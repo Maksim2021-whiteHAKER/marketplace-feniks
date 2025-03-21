@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo-box {
+  text-align: center;
+}
+
+.phoenix-title {
+  background: linear-gradient(to left, rgb(239, 180, 3), rgb(255, 255, 255), rgb(250, 0, 0));
+  background-size: 200% auto;
+  -webkit-background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animate 1.9s linear infinite;
+  display: inline-block;
+  margin: 0;
+  font-size: 28px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.phoenix-subtitle {
+  margin: -5px 0 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+@keyframes animate {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+@media (min-width: 768px) {
+  .phoenix-title {
+    font-size: 36px;
+  }
+
+  .phoenix-subtitle {
+    font-size: 16px;
+  }
+}
+
