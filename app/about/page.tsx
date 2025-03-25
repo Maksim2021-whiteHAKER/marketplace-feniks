@@ -1,6 +1,7 @@
 import Link from "next/link"
 import imageFeniks from "../../public/feniksTrans.png"
 import Image from "next/image"
+import { Copyright } from "../functions/functions"
 
 export default function AboutPage() {
   return (
@@ -80,7 +81,7 @@ export default function AboutPage() {
       {/* Footer - можно скопировать из других страниц */}
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>© {new Date().getFullYear()} ФЕНИКС. Все права защищены.</p>
+          <Copyright/>
         </div>
       </footer>
     </div>

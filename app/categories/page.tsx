@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Copyright } from "../functions/functions"
 
 export default function CategoriesPage() {
   const categories = [
@@ -80,7 +81,7 @@ export default function CategoriesPage() {
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>© {new Date().getFullYear()} ФЕНИКС. Все права защищены.</p>
+          <Copyright/>
         </div>
       </footer>
     </div>
