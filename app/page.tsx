@@ -41,7 +41,7 @@ export default function Home() {
               />
               <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
             </div>
-            <Link href="/autorization" className="">
+            <Link href="/login" className="">
             <button className="flex items-center space-x-2 p-2 text-gray-700 hover:text-orange-500">
               <span>войти</span>
               <User size={24} />
@@ -198,23 +198,23 @@ export default function Home() {
               <h4 className="font-medium mb-4">Категории</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/category/electronics" className="text-gray-400 hover:text-white">
-                    Электроника
+                  <Link href="/category/illustrator" className="text-gray-400 hover:text-white">
+                    Иллюстратор
                   </Link>
                 </li>
                 <li>
-                  <Link href="/category/clothing" className="text-gray-400 hover:text-white">
-                    Одежда
+                  <Link href="/category/photoshop" className="text-gray-400 hover:text-white">
+                    Фотошоп
                   </Link>
                 </li>
                 <li>
                   <Link href="/category/home" className="text-gray-400 hover:text-white">
-                    Дом и сад
+                    .другое(пока в разработке)
                   </Link>
                 </li>
                 <li>
                   <Link href="/category/beauty" className="text-gray-400 hover:text-white">
-                    Красота и здоровье
+                    .другое(пока в разработке)
                   </Link>
                 </li>
               </ul>

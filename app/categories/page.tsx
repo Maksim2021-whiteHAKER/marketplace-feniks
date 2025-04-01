@@ -3,8 +3,8 @@ import { Copyright } from "../functions/functions"
 
 export default function CategoriesPage() {
   const categories = [
-    { name: "Электроника", subcategories: ["Смартфоны", "Ноутбуки", "Аудио", "Аксессуары"] },
-    { name: "Объекты фотошоп", subcategories: ["Текстуры", "Фоны", "Фотографии", "Открытки"]}
+    { name: "Иллюстратор", subcategories: ["Эскизы", "Векторная графика", "Иллюстрации", "Логотипы"] },
+    { name: "Фотошоп", subcategories: ["Текстуры", "Фоны", "Фотографии", "Открытки"]}
     //{ name: "Одежда", subcategories: ["Мужская", "Женская", "Детская", "Обувь"] },
     //{ name: "Дом и сад", subcategories: ["Мебель", "Декор", "Кухня", "Сад"] },
     //{ name: "Красота и здоровье", subcategories: ["Косметика", "Парфюмерия", "Уход за телом", "Витамины"] },

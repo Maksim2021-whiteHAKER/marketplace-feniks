@@ -1,7 +1,7 @@
 import Link from "next/link"
 import imageFeniks from "../../public/feniksTrans.png"
 import Image from "next/image"
-import LoginForm from "@/components/LoginForm"
+import RegisterForm from "@/components/RegisterForm"
 import { Copyright } from "../functions/functions"
 
 export default function AboutPage() {
@@ -24,7 +24,7 @@ export default function AboutPage() {
             <Link href="/categories" className="text-gray-700 hover:text-orange-500 font-medium whitespace-nowrap">
               Категории
             </Link>
-            <Link href="/about" className="text-orange-500 font-medium whitespace-nowrap">
+            <Link href="/about" className="text-gray-700 hover:text-orange-500 font-medium whitespace-nowrap">
               О нас
             </Link>
             <Link href="/contacts" className="text-gray-700 hover:text-orange-500 font-medium whitespace-nowrap">
@@ -39,7 +39,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold text-gray-800 mb-8 "></h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <LoginForm/>
+            <RegisterForm/>
             <div>
               <Image src = {imageFeniks}
               alt = "О компании ФЕНИКС"

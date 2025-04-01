@@ -1,21 +1,55 @@
+// components/LoginForm.tsx
 'use client'
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPass, setShowPass] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPass, setShowPass] = useState(false)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted!"); // Отладочное сообщение
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!email || !password) {
+      setError("Пожалуйста, заполните все поля")
+      return
+    }
+    
+    try {
+      setLoading(true)
+      setError("")
+      
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      })
+      
+      if (result?.error) {
+        setError("Неверный email или пароль")
+        return
+      }
+      
+      // Успешный вход, перенаправляем на главную
+      router.push("/")
+      router.refresh()
+    } catch (error) {
+      console.error("Ошибка входа:", error)
+      setError("Произошла ошибка при входе")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const togglePassVisibility = () => {
-    setShowPass(!showPass);
-  };
+    setShowPass(!showPass)
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -29,7 +63,7 @@ const LoginForm: React.FC = () => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
           required
         />
       </div>
@@ -43,7 +77,7 @@ const LoginForm: React.FC = () => {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
           required
         />
         <button
@@ -98,15 +132,30 @@ const LoginForm: React.FC = () => {
         </button>
       </div>
 
+      {error && (
+        <div className="text-red-500 text-sm">{error}</div>
+      )}
+
       <div>
         <button
           type="submit"
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Войти
+          disabled={loading}
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50"
+        >
+          {loading ? "Вход..." : "Войти"}
         </button>
       </div>
-    </form>
-  );
-};
 
-export default LoginForm;
+      <div className="text-center text-sm">
+        <p>
+          Нет аккаунта?{" "}
+          <Link href="/register" className="text-orange-600 hover:text-orange-500">
+            Зарегистрироваться
+          </Link>
+        </p>
+      </div>
+    </form>
+  )
+}
+
+export default LoginForm
