@@ -37,7 +37,7 @@ const LoginForm: React.FC = () => {
       }
       
       // Успешный вход, перенаправляем на главную
-      router.push("/")
+      router.push("/login/enter")
       router.refresh()
     } catch (error) {
       console.error("Ошибка входа:", error)

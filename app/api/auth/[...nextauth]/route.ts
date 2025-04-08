@@ -45,6 +45,7 @@ export const authOptions: NextAuthOptions = {
             credentials.password,
             user.password
           );
+          if (isPasswordValid) console.log("правильный пароль",credentials.password)
           if (!isPasswordValid) return null;
 
           return {
@@ -64,7 +65,7 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/login",
+    signIn: "/login/enter",
     signOut: "/",
     error: "/login",
   },
