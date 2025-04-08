@@ -1,18 +1,16 @@
 'use client'
 import Link from "next/link"
 import { User, Settings, Heart, Box, LogOut } from "lucide-react"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
-import Image from "next/image"
-import Feniks from "../public/feniksTrans.png"
 import { Copyright } from "../../../functions/functions"
 import { useSession } from "next-auth/react"
+
 // ultragf pass: 123456
 
 export default function ProfilePage() {
   const {data: session} = useSession()
 
   if (!session) {
-    return <div>Пользователь не авторизован</div>;
+    return <div>🔥</div>;
   }
 
   // Пример данных пользователя
@@ -63,10 +61,12 @@ export default function ProfilePage() {
                   <Heart className="mr-2 h-5 w-5" />
                   Избранное
                 </Link>
+                <Link href="/" className="mr-8">
                 <button className="w-full flex items-center p-3 text-red-600 hover:bg-red-50 rounded-lg">
                   <LogOut className="mr-2 h-5 w-5" />
                   Выйти
-                </button>
+                </button>                
+                </Link>
               </nav>
             </div>
 
