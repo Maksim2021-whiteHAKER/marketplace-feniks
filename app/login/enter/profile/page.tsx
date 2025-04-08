@@ -1,19 +1,26 @@
+'use client'
 import Link from "next/link"
 import { User, Settings, Heart, Box, LogOut } from "lucide-react"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import Image from "next/image"
 import Feniks from "../public/feniksTrans.png"
 import { Copyright } from "../../../functions/functions"
-
+import { useSession } from "next-auth/react"
 // ultragf pass: 123456
 
 export default function ProfilePage() {
+  const {data: session} = useSession()
+
+  if (!session) {
+    return <div>Пользователь не авторизован</div>;
+  }
+
   // Пример данных пользователя
   const userData = {
-    name: "Иван Иванов",
-    email: '',
-    phone: "+7 (999) 123-45-67",
-    address: "г. Воткинск, ул. Примерная, д. 1",
+    name: session.user.name,
+    email: session.user.email,
+    phone: "пока в разработке",
+    address: "пока в разработке",
     orders: [
     //   { id: 1, date: "2024-03-15", total: 15000, status: "Доставлен" },
     //   { id: 2, date: "2024-03-20", total: 8500, status: "В обработке" }
@@ -142,6 +149,9 @@ export default function ProfilePage() {
       {/* Footer - Подвал сайта (такой же как на главной) */}
       <footer className="bg-gray-800 text-white py-12 mt-auto">
         {/* ... ваш существующий футер ... */}
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <Copyright/>
+          </div>
       </footer>
     </div>
   )
